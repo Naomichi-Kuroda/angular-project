@@ -7,6 +7,7 @@ import { AppRoutingModule } from "./app-routing.module";
 
 // Service
 import { AuthHttp, AuthConfig } from "angular2-jwt";
+import { AuthGuard } from "./guards/auth-guard";
 import { ConstantService } from "./services/constant.service";
 import { AuthService } from "./services/auth.service";
 
@@ -15,7 +16,8 @@ import { AppComponent } from './app.component';
 import { ErrorComponent } from "./components/error/error.component";
 import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent } from "./components/home/home.component";
-import { AuthGuard } from "./guards/auth-guard";
+import { RegisterComponent } from "./components/register/register.component";
+import { UserService } from "./services/user.service";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -29,7 +31,8 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AppComponent,
         ErrorComponent,
         LoginComponent,
-        HomeComponent
+        HomeComponent,
+        RegisterComponent
     ],
     imports: [
         BrowserModule,
@@ -44,9 +47,10 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
             useFactory: authHttpServiceFactory,
             deps: [Http, RequestOptions]
         },
+        AuthGuard,
         ConstantService,
         AuthService,
-        AuthGuard
+        UserService
     ],
     bootstrap: [AppComponent]
 })
