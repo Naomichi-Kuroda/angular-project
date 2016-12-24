@@ -1,0 +1,31 @@
+<form class="form-inline" [formGroup]="loginForm">
+    <table class="table table-condensed table-striped table-hover">
+        <tr>
+            <th>メールアドレス</th>
+            <td>
+                <input type="email" class="form-control" formControlName="email" [(ngModel)]="model.email">
+            </td>
+        </tr>
+        <tr>
+            <th>パスワード</th>
+            <td>
+                <input type="password" class="form-control" formControlName="password" [(ngModel)]="model.password">
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <input type="checkbox" value="true" formControlName="remember" [(ngModel)]="model.remember"> Remember Me
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid" (click)="login()">ログイン</button>
+                <a class="btn btn-link" [routerLink]="['/password-reset']">
+                    パスワードを忘れた方
+                </a>
+            </td>
+        </tr>
+    </table>
+</form>
