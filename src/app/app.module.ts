@@ -7,14 +7,14 @@ import { AppRoutingModule } from "./app-routing.module";
 
 // Service
 
-// Page
-
 // Component
 import { AppComponent } from './app.component';
+import { ErrorComponent } from "./components/error/error.component";
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        ErrorComponent
     ],
     imports: [
         BrowserModule,

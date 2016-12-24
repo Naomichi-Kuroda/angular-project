@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorComponent } from "./components/error/error.component";
 
 const appRoutes: Routes = [
+    { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({
