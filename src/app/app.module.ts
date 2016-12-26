@@ -11,6 +11,7 @@ import { AuthGuard } from "./guards/auth-guard";
 import { ConstantService } from "./services/constant.service";
 import { AuthService } from "./services/auth.service";
 import { UserService } from "./services/user.service";
+import { AddressService } from "./services/address.service";
 
 // Component
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent } from "./components/home/home.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { GnavComponent } from "./components/gnav/gnav.component";
+import { AddressComponent } from "./components/address/address.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -35,7 +37,8 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         LoginComponent,
         HomeComponent,
         RegisterComponent,
-        GnavComponent
+        GnavComponent,
+        AddressComponent
     ],
     imports: [
         BrowserModule,
@@ -53,7 +56,8 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AuthGuard,
         ConstantService,
         AuthService,
-        UserService
+        UserService,
+        AddressService
     ],
     bootstrap: [AppComponent]
 })
