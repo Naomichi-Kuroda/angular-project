@@ -26,6 +26,7 @@ import { GnavComponent } from "./components/gnav/gnav.component";
 import { AddressFormComponent } from "./components/address-form/address-form.component";
 import { TowerListComponent } from "./components/tower-list/tower-list.component";
 import { TowerEditComponent } from "./components/tower-edit/tower-edit.component";
+import { RoomFormComponent } from "./components/room-form/room-form.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -46,6 +47,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AddressFormComponent,
         TowerListComponent,
         TowerEditComponent,
+        RoomFormComponent,
     ],
     imports: [
         BrowserModule,

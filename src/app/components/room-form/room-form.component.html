@@ -1,0 +1,5 @@
+<ul class="list-inline">
+    <li *ngFor="let tag of tags; let i = index;"><span class="tag">{{ tag }}</span><span class="glyphicon glyphicon-remove" (click)="removeTag(i)"></span></li>
+</ul>
+<button class="btn btn-danger" (click)="reset()" style="display:block;margin-bottom:6px;">リセット</button>
+<textarea cols="50" rows="4" [(ngModel)]="current" (keyup)="keyUp($event)" (blur)="blur()"></textarea>
