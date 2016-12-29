@@ -1,0 +1,10 @@
+<table class="table table-striped table-hover">
+    <tr>
+        <th>建物名</th>
+        <th>所在地</th>
+    </tr>
+    <tr *ngFor="let tower of towerList">
+        <td>{{ tower.residenceName }} {{ tower.towerName }}</td>
+        <td>{{ tower.prefecture }} {{ tower.city }} {{ tower.town }}</td>
+    </tr>
+</table>

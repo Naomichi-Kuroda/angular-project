@@ -12,6 +12,7 @@ import { ConstantService } from "./services/constant.service";
 import { AuthService } from "./services/auth.service";
 import { UserService } from "./services/user.service";
 import { AddressService } from "./services/address.service";
+import { TowerService } from "./services/tower.service";
 
 // Component
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { HomeComponent } from "./components/home/home.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { GnavComponent } from "./components/gnav/gnav.component";
 import { AddressComponent } from "./components/address/address.component";
+import { TowerListComponent } from "./components/tower-list/tower-list.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -38,14 +40,15 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HomeComponent,
         RegisterComponent,
         GnavComponent,
-        AddressComponent
+        AddressComponent,
+        TowerListComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        AppRoutingModule,
+        AppRoutingModule
     ],
     providers: [
         {
@@ -57,7 +60,8 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ConstantService,
         AuthService,
         UserService,
-        AddressService
+        AddressService,
+        TowerService
     ],
     bootstrap: [AppComponent]
 })
