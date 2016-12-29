@@ -43,7 +43,7 @@ export class TowerService {
             .catch((error:any) => Observable.throw(error.json()));
     }
 
-    remove(id: string): Observable<any> {
+    destroy(id: string): Observable<any> {
         return this.http.delete(this.apiUrl + '/' + id)
             .map((res:Response) => res.json())
             .catch((error:any) => Observable.throw(error.json()));

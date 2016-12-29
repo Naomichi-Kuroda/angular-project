@@ -3,6 +3,7 @@ import { AddressFormComponent } from "../address-form/address-form.component";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { TowerService } from "../../services/tower.service";
 import { ConstantService } from "../../services/constant.service";
+import { ToastsManager, Toast } from "ng2-toastr";
 
 @Component({
     selector: 'tower-edit',
@@ -28,13 +29,14 @@ export class TowerEditComponent implements OnInit, OnChanges {
         'border': 'none',
         'background': 'none',
         'box-shadow': 'none',
-        'overflow': 'hidden'
+        'overflow': 'hidden',
     };
 
     constructor(
         private fb: FormBuilder,
         private constantService: ConstantService,
         private towerService: TowerService,
+        private toastr: ToastsManager
     ) { }
 
     ngOnInit() {
@@ -91,10 +93,6 @@ export class TowerEditComponent implements OnInit, OnChanges {
         this.isEditMode = false;
     }
 
-    addRooms() {
-
-    }
-
     editTower() {
         let model = {
             residenceName: this.editForm.value.residenceName,
@@ -105,7 +103,7 @@ export class TowerEditComponent implements OnInit, OnChanges {
                 city: this.addressForm.value.city,
                 town: this.addressForm.value.town,
             },
-            towerMemo: this.editForm.value.towerMemo,
+            memo: this.editForm.value.memo,
         };
         this.towerService.update(this.towerId, model).subscribe(
             res => {
@@ -115,13 +113,23 @@ export class TowerEditComponent implements OnInit, OnChanges {
                 console.log(error);
             },
             () => {
-                this.constantService.showSuccess('編集完了しました', '建物編集');
+                this.toastSuccess();
             }
         )
     }
 
+    toastSuccess() {
+        this.toastr.success('編集完了しました', '建物編集', {dismiss: 'controlled'})
+            .then((toast: Toast) => {
+                setTimeout(() => {
+                    this.toastr.dismissToast(toast);
+                }, this.constantService.SECOND_DISPLAY_TOAST);
+            });
+    }
+
+
     deleteTower() {
-        this.towerService.remove(this.towerId).subscribe(
+        this.towerService.destroy(this.towerId).subscribe(
             res => {
                 this.jsonDeleteBody = res.result;
             },
@@ -129,9 +137,22 @@ export class TowerEditComponent implements OnInit, OnChanges {
                 console.log(error);
             },
             () => {
-                this.constantService.showWarning('削除完了しました', '建物削除');
+                this.toastWarning();
             }
         )
+    }
+
+    toastWarning() {
+        this.toastr.warning('削除完了しました', '建物削除', {dismiss: 'controlled'})
+            .then((toast: Toast) => {
+                setTimeout(() => {
+                    this.toastr.dismissToast(toast);
+                }, this.constantService.SECOND_DISPLAY_TOAST);
+            });
+    }
+
+    addRooms() {
+
     }
 
 }

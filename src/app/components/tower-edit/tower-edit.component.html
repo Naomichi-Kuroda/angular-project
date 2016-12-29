@@ -9,10 +9,7 @@
                     <button type="button" class="btn btn-default" (click)="onShowMode()">キャンセル</button>
                     <button type="button" class="btn btn-warning" (click)="editTower()">建物編集</button>
                     <button type="button" class="btn btn-danger" (click)="deleteModal.show()">建物削除</button>
-                    <button type="button" class="btn btn-success" (click)="createModal.show()">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="false"></span>
-                        部屋追加
-                    </button>
+                    <button type="button" class="btn btn-success" (click)="createModal.show()">部屋追加</button>
                 </div>
             </td>
         </tr>
@@ -37,28 +34,11 @@
         <tr>
             <th>メモ</th>
             <td>
-                <textarea class="form-control" cols="50" rows="5" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="memo" [(ngModel)]="model.memo"></textarea>
+                <textarea class="form-control" cols="50" rows="4" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="memo" [(ngModel)]="model.memo"></textarea>
             </td>
         </tr>
     </table>
 </form>
-
-<div bsModal #createModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" (click)="createModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">部屋追加</h4>
-            </div>
-            <div class="modal-body">
-                <button class="btn btn-default" (click)="createModal.hide()">キャンセル</button>
-                <button class="btn btn-success" (click)="addRooms();createModal.hide()">追加</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -72,6 +52,23 @@
             <div class="modal-body">
                 <button class="btn btn-default" (click)="deleteModal.hide()">キャンセル</button>
                 <button class="btn btn-danger" (click)="deleteTower();deleteModal.hide()">削除</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #createModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="createModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">部屋追加</h4>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-default" (click)="createModal.hide()">キャンセル</button>
+                <button class="btn btn-success" (click)="addRooms();createModal.hide()">追加</button>
             </div>
         </div>
     </div>
