@@ -3,7 +3,7 @@
         <th>建物名</th>
         <th>所在地</th>
     </tr>
-    <tr *ngFor="let tower of towerList">
+    <tr *ngFor="let tower of towerList" (click)="onTowerId(tower.towerId)">
         <td>{{ tower.residenceName }} {{ tower.towerName }}</td>
         <td>{{ tower.prefecture }} {{ tower.city }} {{ tower.town }}</td>
     </tr>

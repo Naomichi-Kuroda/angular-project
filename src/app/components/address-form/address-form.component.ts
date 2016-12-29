@@ -5,14 +5,22 @@ import { Address } from "../../models/address";
 import { AddressService } from "../../services/address.service";
 
 @Component({
-    selector: 'address',
-    templateUrl: './address.component.html',
+    selector: 'address-form',
+    templateUrl: './address-form.component.html',
 })
-export class AddressComponent implements OnInit {
+export class AddressFormComponent implements OnInit {
 
     @Input() address: Address;
     addressForm: FormGroup;
     prefectureList: Array<any>;
+    @Input() isEditMode: boolean;
+    styleShow = {
+        '-webkit-appearance': 'none',
+        'border': 'none',
+        'background': 'none',
+        'box-shadow': 'none',
+        'overflow': 'auto'
+    };
 
     constructor(
         private fb: FormBuilder,
@@ -33,7 +41,7 @@ export class AddressComponent implements OnInit {
     }
 
     search() {
-        this.addressService.get(this.addressForm.value.zipCode).subscribe(
+        this.addressService.index(this.addressForm.value.zipCode).subscribe(
             res => {
                 this.address = res.result;
             },

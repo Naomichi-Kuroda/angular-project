@@ -18,7 +18,6 @@ export class AuthService {
     constructor(
         private router: Router,
         private http: Http,
-        private authHttp: AuthHttp,
         private constantService: ConstantService
     ) {
         this.apiUrl = this.constantService.API_ENDPOINT + 'authenticate';

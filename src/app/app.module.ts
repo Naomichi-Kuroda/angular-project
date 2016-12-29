@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { AppRoutingModule } from "./app-routing.module";
+import { ModalModule } from "ng2-bootstrap";
+import { ToastModule } from "ng2-toastr";
 
 // Service
 import { AuthHttp, AuthConfig } from "angular2-jwt";
@@ -21,8 +23,9 @@ import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent } from "./components/home/home.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { GnavComponent } from "./components/gnav/gnav.component";
-import { AddressComponent } from "./components/address/address.component";
+import { AddressFormComponent } from "./components/address-form/address-form.component";
 import { TowerListComponent } from "./components/tower-list/tower-list.component";
+import { TowerEditComponent } from "./components/tower-edit/tower-edit.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -40,15 +43,18 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HomeComponent,
         RegisterComponent,
         GnavComponent,
-        AddressComponent,
-        TowerListComponent
+        AddressFormComponent,
+        TowerListComponent,
+        TowerEditComponent,
     ],
     imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        AppRoutingModule
+        AppRoutingModule,
+        ModalModule.forRoot(),
+        ToastModule
     ],
     providers: [
         {

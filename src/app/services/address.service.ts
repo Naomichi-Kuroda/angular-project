@@ -13,9 +13,7 @@ export class AddressService {
     options: RequestOptions;
 
     constructor(
-        private router: Router,
         private http: Http,
-        private authHttp: AuthHttp,
         private constantService: ConstantService
     ) {
         this.apiUrl = this.constantService.API_ENDPOINT + 'address';
@@ -23,10 +21,10 @@ export class AddressService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-    get(zipCode: string) : Observable<any> {
+    index(zipCode: string) : Observable<any> {
         return this.http.get(this.apiUrl + "?keyword=" + zipCode)
             .map((res:Response) => res.json())
-            .catch((error:any) => Observable.throw(error.json().error));
+            .catch((error:any) => Observable.throw(error.json()));
     }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TowerService } from "../../services/tower.service";
 
 @Component({
@@ -7,6 +7,7 @@ import { TowerService } from "../../services/tower.service";
 })
 export class TowerListComponent implements OnInit {
 
+    @Output() selectTowerId: EventEmitter<string> = new EventEmitter<string>();
     towerList: any;
     jsonGetBody: any;
 
@@ -19,7 +20,7 @@ export class TowerListComponent implements OnInit {
     }
 
     getTowerList() {
-        this.towerService.getAll().subscribe(
+        this.towerService.index().subscribe(
             res => {
                 this.jsonGetBody = res.result;
             },
@@ -36,4 +37,7 @@ export class TowerListComponent implements OnInit {
         this.towerList = this.jsonGetBody.towerList;
     }
 
+    onTowerId(towerId) {
+        this.selectTowerId.emit(towerId);
+    }
 }

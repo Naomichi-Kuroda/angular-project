@@ -1,4 +1,5 @@
 <p>
     You are logged in!
 </p>
-<tower-list></tower-list>
+<tower-list (selectTowerId)="setTowerId($event)"></tower-list>
+<tower-edit [towerId]="towerId"></tower-edit>
