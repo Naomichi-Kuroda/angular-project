@@ -104,7 +104,7 @@ export class ResidenceCreateComponent implements OnInit {
             }
         }
 
-        this.residenceService.create(model).subscribe(
+        this.residenceService.store(model).subscribe(
             res => {
                 this.jsonPostBody = res.result;
             },

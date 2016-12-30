@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 import { TowerService } from "../../services/tower.service";
 import { ConstantService } from "../../services/constant.service";
 import { ToastsManager, Toast } from "ng2-toastr";
+import { RoomFormComponent } from "../room-form/room-form.component";
 
 @Component({
     selector: 'tower-edit',
@@ -13,12 +14,14 @@ export class TowerEditComponent implements OnInit, OnChanges {
 
     @Input() towerId: string;
     @ViewChild(AddressFormComponent) chileAddressForm: AddressFormComponent;
+    @ViewChild(RoomFormComponent) childRoomForm: RoomFormComponent;
 
     model: any;
     editForm: FormGroup;
     address: any;
 
     jsonGetBody: any;
+    jsonPostBody: any;
     jsonPutBody: any;
     jsonDeleteBody: any;
 
@@ -112,13 +115,13 @@ export class TowerEditComponent implements OnInit, OnChanges {
                 console.log(error);
             },
             () => {
-                this.toastSuccess();
+                this.toastSuccess('編集完了しました', '建物編集');
             }
         )
     }
 
-    toastSuccess() {
-        this.toastr.success('編集完了しました', '建物編集', {dismiss: 'controlled'})
+    toastSuccess(message, title) {
+        this.toastr.success(message, title, {dismiss: 'controlled'})
             .then((toast: Toast) => {
                 setTimeout(() => {
                     this.toastr.dismissToast(toast);
@@ -136,13 +139,13 @@ export class TowerEditComponent implements OnInit, OnChanges {
                 console.log(error);
             },
             () => {
-                this.toastWarning();
+                this.toastWarning('削除完了しました', '建物削除');
             }
         )
     }
 
-    toastWarning() {
-        this.toastr.warning('削除完了しました', '建物削除', {dismiss: 'controlled'})
+    toastWarning(message, title) {
+        this.toastr.warning(message, title, {dismiss: 'controlled'})
             .then((toast: Toast) => {
                 setTimeout(() => {
                     this.toastr.dismissToast(toast);
@@ -151,6 +154,28 @@ export class TowerEditComponent implements OnInit, OnChanges {
     }
 
     addRooms() {
+        let model = {
+            roomList: []
+        };
+        for(var i in this.childRoomForm.tags) {
+            model.roomList.push(
+                {
+                    roomName: this.childRoomForm.tags[i],
+                }
+            );
+        }
+        this.towerService.storeRooms(this.towerId, model).subscribe(
+            res => {
+                this.jsonPostBody = res.result;
+            },
+            error => {
+                console.log(error);
+            },
+            () => {
+                this.toastSuccess('追加完了しました', '部屋追加');
+                this.childRoomForm.ngOnInit();
+            }
+        )
 
     }
 

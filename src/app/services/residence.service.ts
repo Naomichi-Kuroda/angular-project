@@ -31,7 +31,7 @@ export class ResidenceService {
             .catch((error:any) => Observable.throw(error.json()));
     }
 
-    create(body: Object): Observable<any> {
+    store(body: Object): Observable<any> {
         return this.http.post(this.apiUrl, body, this.options)
             .map((res:Response) => res.json())
             .catch((error:any) => Observable.throw(error.json()));

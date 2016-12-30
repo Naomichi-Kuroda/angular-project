@@ -43,6 +43,12 @@ export class TowerService {
             .catch((error:any) => Observable.throw(error.json()));
     }
 
+    storeRooms(id: string, body: Object): Observable<any> {
+        return this.http.put(this.apiUrl + '/storeRooms/' + id, body, this.options)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json()));
+    }
+
     destroy(id: string): Observable<any> {
         return this.http.delete(this.apiUrl + '/' + id)
             .map((res:Response) => res.json())

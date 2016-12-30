@@ -67,8 +67,11 @@
                 <h4 class="modal-title">部屋追加</h4>
             </div>
             <div class="modal-body">
-                <button class="btn btn-default" (click)="createModal.hide()">キャンセル</button>
-                <button class="btn btn-success" (click)="addRooms();createModal.hide()">追加</button>
+                <room-form></room-form>
+                <div>
+                    <button class="btn btn-default" (click)="createModal.hide()">キャンセル</button>
+                    <button class="btn btn-success" (click)="addRooms();createModal.hide()">追加</button>
+                </div>
             </div>
         </div>
     </div>
