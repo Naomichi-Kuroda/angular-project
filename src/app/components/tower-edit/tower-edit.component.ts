@@ -12,12 +12,11 @@ import { ToastsManager, Toast } from "ng2-toastr";
 export class TowerEditComponent implements OnInit, OnChanges {
 
     @Input() towerId: string;
-    @ViewChild(AddressFormComponent)
-    chileAddressForm: AddressFormComponent;
+    @ViewChild(AddressFormComponent) chileAddressForm: AddressFormComponent;
 
     model: any;
     editForm: FormGroup;
-    addressForm: FormGroup;
+    address: any;
 
     jsonGetBody: any;
     jsonPutBody: any;
@@ -41,7 +40,6 @@ export class TowerEditComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         this.isEditMode = false;
-        this.addressForm = this.chileAddressForm.addressForm;
         this.model = {
             residenceName: '',
             towerName: '',
@@ -54,9 +52,9 @@ export class TowerEditComponent implements OnInit, OnChanges {
             memo: '',
         };
         this.editForm = this.fb.group({
-            residenceName: [this.model.residenceName],
-            towerName: [this.model.towerName],
-            memo: [this.model.towerMemo],
+            residenceName: [''],
+            towerName: [''],
+            memo: [''],
         });
     }
 
@@ -94,14 +92,15 @@ export class TowerEditComponent implements OnInit, OnChanges {
     }
 
     editTower() {
+        this.address = this.chileAddressForm.address;
         let model = {
             residenceName: this.editForm.value.residenceName,
             towerName: this.editForm.value.towerName,
             address: {
-                zipCode: this.addressForm.value.zipCode,
-                prefecture: this.addressForm.value.prefecture,
-                city: this.addressForm.value.city,
-                town: this.addressForm.value.town,
+                zipCode: this.address.zipCode,
+                prefecture: this.address.prefecture,
+                city: this.address.city,
+                town: this.address.town,
             },
             memo: this.editForm.value.memo,
         };

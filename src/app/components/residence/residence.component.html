@@ -1,0 +1,7 @@
+<div class="pull-right">
+    <button class="btn btn-success" (click)="c.show()">建物追加</button>
+    <residence-create #c="child"></residence-create>
+</div>
+
+<tower-list (selectTowerId)="setTowerId($event)"></tower-list>
+<tower-edit [towerId]="towerId"></tower-edit>

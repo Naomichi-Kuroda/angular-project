@@ -7,8 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
         li { 
             display: inline-block;
             padding: 3px 6px;
-            margin-right: 3px;
-            margin-bottom: 3px;
+            margin: 0 5px;
             background-color: #4285f4;
             color: #FFFFFF;
             font-size: 10px;
@@ -48,7 +47,6 @@ export class RoomFormComponent implements OnInit {
         }
 
         if (event.keyCode === 32 && this.current.match(/\S/g)) {
-            console.log(this.current);
             this.current = this.current.replace(/\s+$/, "");
             this.tags.push(this.current);
             this.setTags();

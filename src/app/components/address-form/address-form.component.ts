@@ -7,6 +7,14 @@ import { AddressService } from "../../services/address.service";
 @Component({
     selector: 'address-form',
     templateUrl: './address-form.component.html',
+    styles: [`
+        dl {
+            margin-bottom: 0;
+        }
+        dd {
+            margin-bottom: 10px;
+        }
+    `],
 })
 export class AddressFormComponent implements OnInit {
 
@@ -26,7 +34,9 @@ export class AddressFormComponent implements OnInit {
         private fb: FormBuilder,
         private constantService: ConstantService,
         private addressService: AddressService,
-    ) {
+    ) { }
+
+    ngOnInit() {
         this.address = new Address;
         this.prefectureList = this.constantService.PREFECTURES;
         this.addressForm = this.fb.group({
@@ -35,9 +45,6 @@ export class AddressFormComponent implements OnInit {
             'city': [''],
             'town': [''],
         });
-    }
-
-    ngOnInit() {
     }
 
     search() {

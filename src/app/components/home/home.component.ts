@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'home',
@@ -6,14 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-    towerId: string;
-
     constructor() { }
 
     ngOnInit() {
     }
 
-    setTowerId(towerId) {
-        this.towerId = towerId;
-    }
 }

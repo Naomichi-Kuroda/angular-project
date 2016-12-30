@@ -1,20 +1,19 @@
 <form class="form-inline" [formGroup]="addressForm">
-    <div class="row">
-        <div class="col-md-12">
+    <dl>
+        <dd>
             <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="zipCode" [(ngModel)]="address.zipCode">
             <button *ngIf="isEditMode" type="button" class="btn btn-info" (click)="search()">
                 <span class="glyphicon glyphicon-search"></span>
                 検索
             </button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
+        </dd>
+        <dd>
             <select class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="prefecture" [(ngModel)]="address.prefecture">
                 <option *ngFor="let prefecture of prefectureList" [ngValue]="prefecture.value">{{ prefecture.value }}</option>
             </select>
             <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="city" [(ngModel)]="address.city">
             <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="town" [(ngModel)]="address.town">
-        </div>
-    </div>
+
+        </dd>
+    </dl>
 </form>
