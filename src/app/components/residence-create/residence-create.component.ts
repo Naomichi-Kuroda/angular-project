@@ -112,15 +112,15 @@ export class ResidenceCreateComponent implements OnInit {
                 console.log(error);
             },
             () => {
-                this.toastSuccess();
+                this.toastSuccess('追加完了しました', '建物追加');
                 this.hide();
                 this.ngOnInit();
             }
         )
     };
 
-    toastSuccess() {
-        this.toastr.success('追加完了しました', '建物追加', {dismiss: 'controlled'})
+    toastSuccess(message, title) {
+        this.toastr.success(message, title, {dismiss: 'controlled'})
             .then((toast: Toast) => {
                 setTimeout(() => {
                     this.toastr.dismissToast(toast);

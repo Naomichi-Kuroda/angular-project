@@ -8,7 +8,7 @@
         <td *ngIf="room.residentName">{{ room.residentName }}</td>
         <td *ngIf="!room.residentName">
             <button class="btn btn-success" (click)="c.show()">居住者追加</button>
-            <residence-create #c="child"></residence-create>
+            <resident-create #c="child" [roomId]="room.roomId"></resident-create>
         </td>
     </tr>
 </table>

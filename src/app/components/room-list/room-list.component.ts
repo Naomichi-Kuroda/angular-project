@@ -10,6 +10,7 @@ export class RoomListComponent implements OnInit, OnChanges {
     @Input() towerId: string;
     @Output() selectRoomId: EventEmitter<string> = new EventEmitter<string>();
     roomList: any;
+
     jsonGetBody: any;
 
     constructor(

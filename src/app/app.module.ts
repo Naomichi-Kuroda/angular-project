@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { AppRoutingModule } from "./app-routing.module";
-import { ModalModule } from "ng2-bootstrap";
+import { ModalModule, DatepickerModule } from "ng2-bootstrap";
 import { ToastModule } from "ng2-toastr";
 
 // Service
@@ -32,6 +32,8 @@ import { RoomFormComponent } from "./components/room-form/room-form.component";
 import { ResidenceComponent } from "./components/residence/residence.component";
 import { ResidenceCreateComponent } from "./components/residence-create/residence-create.component";
 import { RoomListComponent } from "./components/room-list/room-list.component";
+import { ResidentCreateComponent } from "./components/resident-create/resident-create.component";
+import { DateFormComponent } from "./components/date-form/date-form.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -55,7 +57,9 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         RoomFormComponent,
         ResidenceComponent,
         ResidenceCreateComponent,
-        RoomListComponent
+        RoomListComponent,
+        ResidentCreateComponent,
+        DateFormComponent
     ],
     imports: [
         BrowserModule,
@@ -64,6 +68,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HttpModule,
         AppRoutingModule,
         ModalModule.forRoot(),
+        DatepickerModule.forRoot(),
         ToastModule
     ],
     providers: [

@@ -1,0 +1,18 @@
+<form class="form-inline" [formGroup]="dateForm">
+    <div class="input-group date">
+        <input type="text" [(ngModel)]="value" class="form-control" formControlName="date" (focus)="open()">
+        <span class="input-group-addon" (click)="open()">
+            <span class="glyphicon-calendar glyphicon"></span>
+        </span>
+    </div>
+</form>
+
+<div class="dp-popup" *ngIf="showDatepicker">
+    <datepicker [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="false" (selectionDone)="onSelectionDone($event)"></datepicker>
+    <div class="clearfix">
+        <button type="button" class="btn btn-sm btn-default" (click)="close()">Close</button>
+        <button type="button" class="btn btn-sm btn-primary" (click)="today()">Today</button>
+        <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+    </div>
+</div>
+
