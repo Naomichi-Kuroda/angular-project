@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ResidenceComponent implements OnInit {
 
     towerId: string;
+    roomId: string;
 
     constructor() { }
 
@@ -16,6 +17,10 @@ export class ResidenceComponent implements OnInit {
 
     setTowerId(towerId) {
         this.towerId = towerId;
+    }
+
+    setRoomId(roomId) {
+        this.roomId = roomId;
     }
 
 }

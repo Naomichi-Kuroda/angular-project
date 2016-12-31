@@ -16,6 +16,7 @@ import { UserService } from "./services/user.service";
 import { AddressService } from "./services/address.service";
 import { TowerService } from "./services/tower.service";
 import { ResidenceService } from "./services/residence.service";
+import { RoomService } from "./services/room.service";
 
 // Component
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { TowerEditComponent } from "./components/tower-edit/tower-edit.component
 import { RoomFormComponent } from "./components/room-form/room-form.component";
 import { ResidenceComponent } from "./components/residence/residence.component";
 import { ResidenceCreateComponent } from "./components/residence-create/residence-create.component";
+import { RoomListComponent } from "./components/room-list/room-list.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -53,6 +55,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         RoomFormComponent,
         ResidenceComponent,
         ResidenceCreateComponent,
+        RoomListComponent
     ],
     imports: [
         BrowserModule,
@@ -75,7 +78,8 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         UserService,
         AddressService,
         TowerService,
-        ResidenceService
+        ResidenceService,
+        RoomService
     ],
     bootstrap: [AppComponent]
 })

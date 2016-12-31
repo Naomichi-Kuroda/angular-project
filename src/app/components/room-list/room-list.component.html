@@ -1,0 +1,14 @@
+<table class="table table-striped table-hover">
+    <tr>
+        <th>部屋名</th>
+        <th>居住者</th>
+    </tr>
+    <tr *ngFor="let room of roomList" (click)="onRoomId(room.roomId)">
+        <td>{{ room.roomName }}</td>
+        <td *ngIf="room.residentName">{{ room.residentName }}</td>
+        <td *ngIf="!room.residentName">
+            <button class="btn btn-success" (click)="c.show()">居住者追加</button>
+            <residence-create #c="child"></residence-create>
+        </td>
+    </tr>
+</table>

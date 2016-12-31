@@ -40,4 +40,5 @@ export class TowerListComponent implements OnInit {
     onTowerId(towerId) {
         this.selectTowerId.emit(towerId);
     }
+
 }
