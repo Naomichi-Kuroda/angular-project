@@ -9,8 +9,9 @@
                         </div>
                         <div *ngIf="isEditMode">
                             <button type="button" class="btn btn-default" (click)="onShowMode()">キャンセル</button>
-                            <button type="button" class="btn btn-warning" (click)="editTower()">居住者編集</button>
-                            <button type="button" class="btn btn-danger" (click)="deleteModal.show()">居住者削除</button>
+                            <button type="button" class="btn btn-warning" (click)="editResident(i)">居住者編集</button>
+                            <button type="button" class="btn btn-danger" (click)="deleteModal.show();setDeleteResidentId(i);">居住者削除</button>
+                            <input type="hidden" formControlName="residentId" [(ngModel)]="model[i].residentId">
                         </div>
                     </td>
                 </tr>
@@ -60,3 +61,20 @@
         </div>
     </div>
 </form>
+
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="deleteModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">居住者削除</h4>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-default" (click)="deleteModal.hide()">キャンセル</button>
+                <button class="btn btn-danger" (click)="deleteResident();deleteModal.hide()">削除</button>
+            </div>
+        </div>
+    </div>
+</div>

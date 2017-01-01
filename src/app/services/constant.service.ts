@@ -24,4 +24,17 @@ export class ConstantService {
         return d;
     }
 
+    getMySQLDate(dt, dtype) {
+        var timestamp = dt.getFullYear()+
+            (String(dt.getMonth()+101).substr(1,2))+
+            (String(dt.getDate()+100).substr(1,2)+
+            (String(dt.getHours()+100).substr(1,2))+
+            (String(dt.getMinutes()+100).substr(1,2))+
+            (String(dt.getSeconds()+100).substr(1,2)));
+        if (dtype=="timestamp") return timestamp;
+        timestamp.match(/(d{4})(d{2})(d{2})(d{2})(d{2})(d{2})/);
+        var datetime = RegExp.$1+'-'+RegExp.$2+'-'+RegExp.$3+
+            ' '+RegExp.$4+':'+RegExp.$5+':'+RegExp.$6;
+        if (dtype=="datetime") return datetime;
+    }
 }

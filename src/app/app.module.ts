@@ -17,6 +17,7 @@ import { AddressService } from "./services/address.service";
 import { TowerService } from "./services/tower.service";
 import { ResidenceService } from "./services/residence.service";
 import { RoomService } from "./services/room.service";
+import { ResidentService } from "./services/resident.service";
 
 // Component
 import { AppComponent } from './app.component';
@@ -86,7 +87,8 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AddressService,
         TowerService,
         ResidenceService,
-        RoomService
+        RoomService,
+        ResidentService
     ],
     bootstrap: [AppComponent]
 })

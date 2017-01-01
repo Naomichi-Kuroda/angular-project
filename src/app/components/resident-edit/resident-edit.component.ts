@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
 import { ConstantService } from "../../services/constant.service";
 import { RoomService } from "../../services/room.service";
 import { ToastsManager, Toast } from "ng2-toastr";
+import { ResidentService } from "../../services/resident.service";
 
 @Component({
     selector: 'resident-edit',
@@ -22,6 +23,7 @@ export class ResidentEditComponent implements OnInit, OnChanges {
     jsonPostBody: any;
     jsonPutBody: any;
     jsonDeleteBody: any;
+    deleteResidentId: string;
 
     isEditMode: boolean;
     styleShow = {
@@ -36,6 +38,7 @@ export class ResidentEditComponent implements OnInit, OnChanges {
         private fb: FormBuilder,
         private constantService: ConstantService,
         private roomService: RoomService,
+        private residentService: ResidentService,
         private toastr: ToastsManager
     ) { }
 
@@ -59,6 +62,7 @@ export class ResidentEditComponent implements OnInit, OnChanges {
 
     initResident() {
         return this.fb.group({
+            residentId: [''],
             residentName: [''],
             phoneNumber: [''],
             startDate: [''],
@@ -98,17 +102,18 @@ export class ResidentEditComponent implements OnInit, OnChanges {
         this.isEditMode = false;
     }
 
-    editResident() {
+    editResident(i) {
+        let residentId = this.residentList.controls[i].value.residentId;
         let model = {
-            // residentName: this.editForm.value.residentName,
-            // phoneNumber: this.editForm.value.phoneNumber,
-            // startDate: this.childrenDateForm.toArray()[0].dt.toISOString().substring(0, 19).replace('T', ' '),
-            // endDate: this.childrenDateForm.toArray()[1].dt.toISOString().substring(0, 19).replace('T', ' '),
-            // limitDate: this.childrenDateForm.toArray()[2].dt.toISOString().substring(0, 19).replace('T', ' '),
-            // memo: this.editForm.value.memo,
+            residentName: this.residentList.controls[i].value.residentName,
+            phoneNumber: this.residentList.controls[i].value.phoneNumber,
+            startDate: this.childrenDateForm.toArray()[3*i+0].date,
+            endDate: this.childrenDateForm.toArray()[3*i+1].date,
+            limitDate: this.childrenDateForm.toArray()[3*i+2].date,
+            memo: this.residentList.controls[i].value.memo,
         };
 
-        this.roomService.storeResident(this.roomId, model).subscribe(
+        this.residentService.update(residentId, model).subscribe(
             res => {
                 this.jsonPostBody = res.result;
             },
@@ -116,7 +121,7 @@ export class ResidentEditComponent implements OnInit, OnChanges {
                 console.log(error);
             },
             () => {
-                this.toastSuccess('追加完了しました', '居住者追加');
+                this.toastSuccess('編集完了しました', '居住者編集');
                 this.ngOnInit();
             }
         )
@@ -124,6 +129,33 @@ export class ResidentEditComponent implements OnInit, OnChanges {
 
     toastSuccess(message, title) {
         this.toastr.success(message, title, {dismiss: 'controlled'})
+            .then((toast: Toast) => {
+                setTimeout(() => {
+                    this.toastr.dismissToast(toast);
+                }, this.constantService.SECOND_DISPLAY_TOAST);
+            });
+    }
+
+    setDeleteResidentId(i) {
+        this.deleteResidentId = this.residentList.controls[i].value.residentId;
+    }
+
+    deleteResident() {
+        this.residentService.destroy(this.deleteResidentId).subscribe(
+            res => {
+                this.jsonDeleteBody = res.result;
+            },
+            error => {
+                console.log(error);
+            },
+            () => {
+                this.toastWarning('削除完了しました', '居住者削除');
+            }
+        )
+    }
+
+    toastWarning(message, title) {
+        this.toastr.warning(message, title, {dismiss: 'controlled'})
             .then((toast: Toast) => {
                 setTimeout(() => {
                     this.toastr.dismissToast(toast);
