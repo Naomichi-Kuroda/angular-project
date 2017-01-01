@@ -1,0 +1,41 @@
+<form class="form-inline" [formGroup]="editForm">
+    <table class="table table-striped table-hover">
+        <tr>
+            <td colspan="2">
+                <div *ngIf="!isEditMode">
+                    <button type="button" class="btn btn-primary" (click)="onEditMode()">編集モード</button>
+                </div>
+                <div *ngIf="isEditMode">
+                    <button type="button" class="btn btn-default" (click)="onShowMode()">キャンセル</button>
+                    <button type="button" class="btn btn-warning" (click)="editAccount()">アカウント編集</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>ユーザー名</th>
+            <td>
+                <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="lastName" [(ngModel)]="model.lastName">
+                <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="firstName" [(ngModel)]="model.firstName">
+            </td>
+        </tr>
+        <tr>
+            <th>メールアドレス</th>
+            <td>
+                <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="email" [(ngModel)]="model.email">
+            </td>
+        </tr>
+        <tr>
+            <th>電話番号</th>
+            <td>
+                <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="phoneNumber" [(ngModel)]="model.phoneNumber">
+            </td>
+        </tr>
+        <tr>
+            <th>パスワード</th>
+            <td>
+                <button class="btn btn-warning" (click)="c.show()">パスワード変更</button>
+                <password-edit #c="child" [userId]="userId"></password-edit>
+            </td>
+        </tr>
+    </table>
+</form>

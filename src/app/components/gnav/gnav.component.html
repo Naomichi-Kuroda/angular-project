@@ -23,7 +23,9 @@
                         {{ user.lastName }} {{ user.firstName }}<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu" dropdownMenu>
-                        <li><a (click)="logout()">Logout</a></li>
+                        <li><a [routerLink]="['/account']">アカウント管理</a></li>
+                        <li><a [routerLink]="['/residence']">建物管理</a></li>
+                        <li><a (click)="logout()">ログアウト</a></li>
                     </ul>
                 </li>
             </ul>

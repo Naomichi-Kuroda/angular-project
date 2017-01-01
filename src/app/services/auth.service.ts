@@ -17,12 +17,19 @@ export class AuthService {
 
     constructor(
         private router: Router,
+        private authHttp: AuthHttp,
         private http: Http,
         private constantService: ConstantService
     ) {
         this.apiUrl = this.constantService.API_ENDPOINT + 'authenticate';
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.options = new RequestOptions({ headers: this.headers });
+    }
+
+    getUser(): Observable<any> {
+        return this.authHttp.get(this.apiUrl)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json()));
     }
 
     login(body: Object): Observable <any> {
@@ -39,13 +46,22 @@ export class AuthService {
     }
 
     loggedIn() {
-        return tokenNotExpired();
+        return tokenNotExpired('token');
     }
 
     logout() {
         localStorage.removeItem('token');
         sessionStorage.removeItem('token');
         this.router.navigate(['/login']);
+    }
+
+    useJwtHelper() {
+        var token = sessionStorage.getItem('token');
+        console.log(
+            'decode:'+this.jwtHelper.decodeToken(token),
+            'date:'+this.jwtHelper.getTokenExpirationDate(token),
+            'expired:'+this.jwtHelper.isTokenExpired(token),
+        );
     }
 
 }

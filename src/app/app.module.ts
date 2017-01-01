@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { AppRoutingModule } from "./app-routing.module";
-import { ModalModule, DatepickerModule } from "ng2-bootstrap";
+import { ModalModule, DatepickerModule, DropdownModule } from "ng2-bootstrap";
 import { ToastModule } from "ng2-toastr";
 
 // Service
-import { AuthHttp, AuthConfig } from "angular2-jwt";
+import { AuthHttp, AuthConfig, provideAuth } from "angular2-jwt";
 import { AuthGuard } from "./guards/auth-guard";
 import { ConstantService } from "./services/constant.service";
 import { AuthService } from "./services/auth.service";
@@ -18,6 +18,9 @@ import { TowerService } from "./services/tower.service";
 import { ResidenceService } from "./services/residence.service";
 import { RoomService } from "./services/room.service";
 import { ResidentService } from "./services/resident.service";
+
+// Page
+import { ResidenceComponent } from "./pages/residence/residence.component";
 
 // Component
 import { AppComponent } from './app.component';
@@ -30,13 +33,14 @@ import { AddressFormComponent } from "./components/address-form/address-form.com
 import { TowerListComponent } from "./components/tower-list/tower-list.component";
 import { TowerEditComponent } from "./components/tower-edit/tower-edit.component";
 import { RoomFormComponent } from "./components/room-form/room-form.component";
-import { ResidenceComponent } from "./components/residence/residence.component";
 import { ResidenceCreateComponent } from "./components/residence-create/residence-create.component";
 import { RoomListComponent } from "./components/room-list/room-list.component";
 import { ResidentCreateComponent } from "./components/resident-create/resident-create.component";
 import { DateFormComponent } from "./components/date-form/date-form.component";
 import { ResidentEditComponent } from "./components/resident-edit/resident-edit.component";
 import { RoomEditComponent } from "./components/room-edit/room-edit.component";
+import { AccountEditComponent } from "./components/account-edit/account-edit.component";
+import { PasswordEditComponent } from "./components/password-edit/password-edit.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -64,7 +68,9 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ResidentCreateComponent,
         DateFormComponent,
         ResidentEditComponent,
-        RoomEditComponent
+        RoomEditComponent,
+        AccountEditComponent,
+        PasswordEditComponent,
     ],
     imports: [
         BrowserModule,
@@ -74,6 +80,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AppRoutingModule,
         ModalModule.forRoot(),
         DatepickerModule.forRoot(),
+        DropdownModule.forRoot(),
         ToastModule
     ],
     providers: [
