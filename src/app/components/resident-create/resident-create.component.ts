@@ -20,6 +20,8 @@ export class ResidentCreateComponent implements OnInit {
 
     jsonPostBody: any;
 
+    isEditMode: boolean;
+
     constructor(
         private fb: FormBuilder,
         private constantService: ConstantService,
@@ -28,6 +30,7 @@ export class ResidentCreateComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.isEditMode = true;
         this.createForm = this.fb.group({
             residentName: [''],
             phoneNumber: [''],
@@ -50,9 +53,9 @@ export class ResidentCreateComponent implements OnInit {
         let model = {
             residentName: this.createForm.value.residentName,
             phoneNumber: this.createForm.value.phoneNumber,
-            startDate: this.childrenDateForm.toArray()[0].dt.toISOString().substring(0, 19).replace('T', ' '),
-            endDate: this.childrenDateForm.toArray()[1].dt.toISOString().substring(0, 19).replace('T', ' '),
-            limitDate: this.childrenDateForm.toArray()[2].dt.toISOString().substring(0, 19).replace('T', ' '),
+            startDate: this.childrenDateForm.toArray()[0].date.toISOString().substring(0, 19).replace('T', ' '),
+            endDate: this.childrenDateForm.toArray()[1].date.toISOString().substring(0, 19).replace('T', ' '),
+            limitDate: this.childrenDateForm.toArray()[2].date.toISOString().substring(0, 19).replace('T', ' '),
             memo: this.createForm.value.memo,
         };
 

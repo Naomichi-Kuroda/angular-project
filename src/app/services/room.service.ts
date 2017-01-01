@@ -25,6 +25,12 @@ export class RoomService {
             .catch((error:any) => Observable.throw(error.json()));
     }
 
+    indexResidents(id: string): Observable<any> {
+        return this.http.get(this.apiUrl + '/indexResidents/' + id)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json()));
+    }
+
     show(id: string) : Observable<any> {
         return this.http.get(this.apiUrl + '/' + id)
             .map((res:Response) => res.json())

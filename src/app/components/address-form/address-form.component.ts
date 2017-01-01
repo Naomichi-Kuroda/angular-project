@@ -21,6 +21,7 @@ export class AddressFormComponent implements OnInit {
     @Input() address: Address;
     addressForm: FormGroup;
     prefectureList: Array<any>;
+
     @Input() isEditMode: boolean;
     styleShow = {
         '-webkit-appearance': 'none',

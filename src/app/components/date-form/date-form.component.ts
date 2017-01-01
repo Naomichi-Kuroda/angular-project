@@ -8,14 +8,23 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 })
 export class DateFormComponent implements OnInit {
 
-    @Input() value: string;
+    @Input() date: Date;
+    value: string;
     dateForm: FormGroup;
-    dt: Date;
     minDate:Date = void 0;
     events:Array<any>;
     tomorrow:Date;
     afterTomorrow:Date;
     showDatepicker: boolean = false;
+
+    @Input() isEditMode: boolean;
+    styleShow = {
+        '-webkit-appearance': 'none',
+        'border': 'none',
+        'background': 'none',
+        'box-shadow': 'none',
+        'overflow': 'auto'
+    };
 
     constructor(
         private fb: FormBuilder,
@@ -23,7 +32,6 @@ export class DateFormComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.dt = new Date();
         (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
         (this.afterTomorrow = new Date()).setDate(this.tomorrow.getDate() + 2);
         (this.minDate = new Date()).setDate(this.minDate.getDate() - 1000);
@@ -38,11 +46,11 @@ export class DateFormComponent implements OnInit {
     }
 
     apply(): void {
-        this.value = this.constantService.transformDate(this.dt);
+        this.value = this.constantService.transformDate(this.date);
     }
 
     today(): void {
-        this.dt = new Date();
+        this.date = new Date();
         this.apply();
     }
 
@@ -55,11 +63,11 @@ export class DateFormComponent implements OnInit {
     }
 
     clear():void {
-        this.dt = this.value = void 0;
+        this.date = this.value = void 0;
     }
 
     onSelectionDone(event) {
-        this.dt = event;
+        this.date = event;
         this.apply();
     }
 
