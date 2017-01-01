@@ -1,0 +1,75 @@
+<form class="form-inline" [formGroup]="editForm">
+    <table class="table table-striped table-hover">
+        <tr>
+            <td colspan="2">
+                <div *ngIf="!isEditMode">
+                    <button type="button" class="btn btn-primary" (click)="onEditMode()">編集モード</button>
+                </div>
+                <div *ngIf="isEditMode">
+                    <button type="button" class="btn btn-default" (click)="onShowMode()">キャンセル</button>
+                    <button type="button" class="btn btn-warning" (click)="editRoom()">部屋編集</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteModal.show()">部屋削除</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>建物名</th>
+            <td>
+                {{ model.residenceName }}
+            </td>
+        </tr>
+        <tr>
+            <th>棟名</th>
+            <td>
+                {{ model.towerName }}
+            </td>
+        </tr>
+        <tr>
+            <th>部屋名</th>
+            <td>
+                <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="roomName" [(ngModel)]="model.roomName">
+            </td>
+        </tr>
+        <tr>
+            <th>退去申請期間</th>
+            <td>
+                <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="leaveApplySpan" [(ngModel)]="model.leaveApplySpan">
+            </td>
+        </tr>
+        <tr>
+            <th>契約期間</th>
+            <td>
+                <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="contractSpan" [(ngModel)]="model.contractSpan">
+            </td>
+        </tr>
+        <tr>
+            <th>管理コード</th>
+            <td>
+                <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="manageCode" [(ngModel)]="model.manageCode">
+            </td>
+        </tr>
+        <tr>
+            <th>メモ</th>
+            <td>
+                <textarea class="form-control" cols="50" rows="4" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="memo" [(ngModel)]="model.memo"></textarea>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="deleteModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">部屋削除</h4>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-default" (click)="deleteModal.hide()">キャンセル</button>
+                <button class="btn btn-danger" (click)="deleteRoom();deleteModal.hide()">削除</button>
+            </div>
+        </div>
+    </div>
+</div>

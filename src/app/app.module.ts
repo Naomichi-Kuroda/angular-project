@@ -36,6 +36,7 @@ import { RoomListComponent } from "./components/room-list/room-list.component";
 import { ResidentCreateComponent } from "./components/resident-create/resident-create.component";
 import { DateFormComponent } from "./components/date-form/date-form.component";
 import { ResidentEditComponent } from "./components/resident-edit/resident-edit.component";
+import { RoomEditComponent } from "./components/room-edit/room-edit.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -62,7 +63,8 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         RoomListComponent,
         ResidentCreateComponent,
         DateFormComponent,
-        ResidentEditComponent
+        ResidentEditComponent,
+        RoomEditComponent
     ],
     imports: [
         BrowserModule,
