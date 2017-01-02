@@ -18,9 +18,11 @@ import { TowerService } from "./services/tower.service";
 import { ResidenceService } from "./services/residence.service";
 import { RoomService } from "./services/room.service";
 import { ResidentService } from "./services/resident.service";
+import { CompanyService } from "./services/company.service";
 
 // Page
 import { ResidenceComponent } from "./pages/residence/residence.component";
+import { CompanyComponent } from "./pages/company/company.component";
 
 // Component
 import { AppComponent } from './app.component';
@@ -41,6 +43,8 @@ import { ResidentEditComponent } from "./components/resident-edit/resident-edit.
 import { RoomEditComponent } from "./components/room-edit/room-edit.component";
 import { AccountEditComponent } from "./components/account-edit/account-edit.component";
 import { PasswordEditComponent } from "./components/password-edit/password-edit.component";
+import { CompanyListComponent } from "./components/company-list/company-list.component";
+import { CompanyCreateComponent } from "./components/company-create/company-create.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -71,6 +75,9 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         RoomEditComponent,
         AccountEditComponent,
         PasswordEditComponent,
+        CompanyComponent,
+        CompanyListComponent,
+        CompanyCreateComponent,
     ],
     imports: [
         BrowserModule,
@@ -97,7 +104,8 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         TowerService,
         ResidenceService,
         RoomService,
-        ResidentService
+        ResidentService,
+        CompanyService
     ],
     bootstrap: [AppComponent]
 })

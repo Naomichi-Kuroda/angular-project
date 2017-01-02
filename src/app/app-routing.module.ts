@@ -7,6 +7,8 @@ import { HomeComponent } from "./components/home/home.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { AccountEditComponent } from "./components/account-edit/account-edit.component";
 import { ResidenceComponent } from "./pages/residence/residence.component";
+import { CompanyComponent } from "./pages/company/company.component";
+import { CompanyCreateComponent } from "./components/company-create/company-create.component";
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -14,6 +16,8 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'account', component: AccountEditComponent, canActivate: [AuthGuard] },
     { path: 'residence', component: ResidenceComponent, canActivate: [AuthGuard] },
+    { path: 'company', component: CompanyComponent, canActivate: [AuthGuard] },
+    { path: 'company/create', component: CompanyCreateComponent, canActivate: [AuthGuard] },
     { path: '**', component: ErrorComponent },
 ];
 
