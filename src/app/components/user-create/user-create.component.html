@@ -1,0 +1,31 @@
+<div *ngIf="companyId">
+    <h4>代表アカウント発行</h4>
+    <form class="form-inline" [formGroup]="createForm">
+        <table class="table table-striped table-hover">
+            <tr>
+                <td formArrayName="userList">
+                    <dl *ngFor="let user of userList.controls; let i = index;" [formGroupName]="i">
+                        <dd>
+                            <input type="text" class="form-control" formControlName="lastName" placeholder="姓">
+                            <input type="text" class="form-control" formControlName="firstName" placeholder="名">
+                            <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                            <button *ngIf="i == 0" class="btn btn-success" (click)="createUsers()">保存</button>
+                            <button *ngIf="i != 0" type="button" class="btn btn-danger" (click)="removeUser(i)">
+                                <span class="glyphicon glyphicon-minus" aria-hidden="false"></span>
+                                削除
+                            </button>
+                        </dd>
+                    </dl>
+                    <button type="button" class="btn btn-info" (click)="addUser()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="false"></span>
+                        追加
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

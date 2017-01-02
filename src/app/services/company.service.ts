@@ -37,6 +37,12 @@ export class CompanyService {
             .catch((error:any) => Observable.throw(error.json()));
     }
 
+    storeUsers(id: string, body: Object): Observable<any> {
+        return this.http.put(this.apiUrl + '/storeUsers/' + id, body, this.options)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json()));
+    }
+
     update(id: string, body: Object): Observable<any> {
         return this.http.put(this.apiUrl + '/' + id, body, this.options)
             .map((res:Response) => res.json())

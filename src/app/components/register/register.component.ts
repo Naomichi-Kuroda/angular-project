@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     }
 
     register() {
-        this.userService.create(this.model).subscribe(
+        this.userService.store(this.model).subscribe(
             res => {
                 this.router.navigate([ '/login' ]);
             },

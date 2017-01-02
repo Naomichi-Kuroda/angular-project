@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { AddressFormComponent } from "../address-form/address-form.component";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { ConstantService } from "../../services/constant.service";
@@ -12,10 +12,10 @@ import { ToastsManager, Toast } from "ng2-toastr";
 export class CompanyCreateComponent implements OnInit {
 
     @ViewChild(AddressFormComponent) chileAddressForm: AddressFormComponent;
+    @Output() getCompanyId: EventEmitter<string> = new EventEmitter<string>();
 
     createForm: FormGroup;
     address: any;
-
     jsonPostBody: any;
 
     isEditMode: boolean;
@@ -59,8 +59,8 @@ export class CompanyCreateComponent implements OnInit {
                 console.log(error);
             },
             () => {
+                this.getCompanyId.emit(this.jsonPostBody.companyId);
                 this.toastSuccess('追加完了しました', '会社追加');
-                this.ngOnInit();
             }
         )
     };

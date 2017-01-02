@@ -23,7 +23,7 @@ export class UserService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
-    create(body: Object): Observable<any> {
+    store(body: Object): Observable<any> {
         return this.http.post(this.apiUrl, body, this.options)
             .map((res:Response) => res.json())
             .catch((error:any) => Observable.throw(error.json()));

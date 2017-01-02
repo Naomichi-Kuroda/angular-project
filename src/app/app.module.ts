@@ -23,6 +23,7 @@ import { CompanyService } from "./services/company.service";
 // Page
 import { ResidenceComponent } from "./pages/residence/residence.component";
 import { CompanyComponent } from "./pages/company/company.component";
+import { CompanyCreationComponent } from "./pages/company-creation/company-creation.component";
 
 // Component
 import { AppComponent } from './app.component';
@@ -45,6 +46,7 @@ import { AccountEditComponent } from "./components/account-edit/account-edit.com
 import { PasswordEditComponent } from "./components/password-edit/password-edit.component";
 import { CompanyListComponent } from "./components/company-list/company-list.component";
 import { CompanyCreateComponent } from "./components/company-create/company-create.component";
+import { UserCreateComponent } from "./components/user-create/user-create.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -78,6 +80,8 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         CompanyComponent,
         CompanyListComponent,
         CompanyCreateComponent,
+        UserCreateComponent,
+        CompanyCreationComponent,
     ],
     imports: [
         BrowserModule,
