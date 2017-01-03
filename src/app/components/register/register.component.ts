@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { UserService } from "../../services/user.service";
 import { ToastsManager, Toast } from "ng2-toastr";
 import { ConstantService } from "../../services/constant.service";
+import { ValidationService } from "../../services/validation.service";
 
 @Component({
     selector: 'register',
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit {
         private router: Router,
         private constantService: ConstantService,
         private userService: UserService,
-        public toastr: ToastsManager
+        private validationService: ValidationService,
+        private toastr: ToastsManager
     ) { }
 
     ngOnInit() {
@@ -40,7 +42,7 @@ export class RegisterComponent implements OnInit {
             password: [ '', [ Validators.required ] ],
             confirmPassword: [ '', [ Validators.required ] ],
             phoneNumber: [ '', [ Validators.required ] ],
-        });
+        }, {validator: this.validationService.matchingPasswords('password', 'confirmPassword')});
     }
 
     register() {
@@ -49,6 +51,7 @@ export class RegisterComponent implements OnInit {
             firstName: this.registerForm.value.firstName,
             email: this.registerForm.value.email,
             password: this.registerForm.value.password,
+            confirmPassword: this.registerForm.value.password,
             phoneNumber: this.registerForm.value.phoneNumber,
         };
         this.userService.store(model).subscribe(
@@ -56,23 +59,13 @@ export class RegisterComponent implements OnInit {
                 this.jsonPostBody = res.result;
             },
             error => {
-                this.hasError(error);
+                this.error = this.constantService.hasError(error);
             },
             () => {
                 this.toastSuccess('登録完了しました', 'ユーザー登録');
                 this.router.navigate([ '/login' ]);
             }
         );
-    }
-
-    hasError(error) {
-        this.error = error.status;
-        if (this.error.code < 200 || this.error.code >= 400) {
-            this.router.navigate([ '/error/' + this.error.code + '/' + this.error.message ]);
-        } else {
-            this.error = error.result;
-        }
-
     }
 
     toastSuccess(message, title) {

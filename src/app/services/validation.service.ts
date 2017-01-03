@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormGroup } from "@angular/forms";
 
 @Injectable()
 export class ValidationService {
@@ -11,6 +12,7 @@ export class ValidationService {
             'minlength': validatorValue.requiredLength + "文字以上で入力してください",
             'invalidEmailAddress': 'メールアドレス形式が正しくありません',
             'invalidPassword': 'パスワード形式が正しくありません',
+            'invalidSame': 'パスワードが異なります',
         };
         return config[validatorName];
     }
@@ -28,6 +30,18 @@ export class ValidationService {
             return null;
         } else {
             return { 'invalidPassword': true };
+        }
+    }
+
+    matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
+        return (group: FormGroup): {[key: string]: any} => {
+            let password = group.controls[passwordKey];
+            let confirmPassword = group.controls[confirmPasswordKey];
+            if (password.value === confirmPassword.value) {
+                return null;
+            } else {
+                return { 'invalidSame': true };
+            }
         }
     }
 

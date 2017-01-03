@@ -7,8 +7,15 @@
                 <input type="text" class="form-control" formControlName="firstName">
                 <validation-message [control]="registerForm.controls.lastName"></validation-message>
                 <validation-message [control]="registerForm.controls.firstName"></validation-message>
-                <div *ngIf="error" class="help-block">
-                    <strong class="text-danger">{{ error.lastName[0] }}</strong>
+                <div *ngIf="error.lastName && error.lastName.length > 0" class="help-block">
+                    <div *ngFor="let error of error.lastName">
+                        <strong class="text-danger">{{ error }}</strong>
+                    </div>
+                </div>
+                <div *ngIf="error.firstName && error.firstName.length > 0" class="help-block">
+                    <div *ngFor="let error of error.firstName">
+                        <strong class="text-danger">{{ error }}</strong>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -17,8 +24,10 @@
             <td>
                 <input type="email" class="form-control" formControlName="email">
                 <validation-message [control]="registerForm.controls.email"></validation-message>
-                <div *ngIf="error" class="help-block">
-                    <strong class="text-danger">{{ error.email[0] }}</strong>
+                <div *ngIf="error.email && error.email.length > 0" class="help-block">
+                    <div *ngFor="let error of error.email">
+                        <strong class="text-danger">{{ error }}</strong>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -27,12 +36,23 @@
             <td>
                 <input type="password" class="form-control" formControlName="password">
                 <validation-message [control]="registerForm.controls.password"></validation-message>
+                <div *ngIf="error.password && error.password.length > 0" class="help-block">
+                    <div *ngFor="let error of error.password">
+                        <strong class="text-danger">{{ error }}</strong>
+                    </div>
+                </div>
             </td>
         </tr>
         <tr>
             <th>確認パスワード</th>
             <td>
                 <input type="password" class="form-control" formControlName="confirmPassword">
+                <validation-message [control]="registerForm"></validation-message>
+                <div *ngIf="error.confirmPassword && error.confirmPassword.length > 0" class="help-block">
+                    <div *ngFor="let error of error.confirmPassword">
+                        <strong class="text-danger">{{ error }}</strong>
+                    </div>
+                </div>
             </td>
         </tr>
         <tr>
@@ -40,6 +60,11 @@
             <td>
                 <input type="text" class="form-control" formControlName="phoneNumber">
                 <validation-message [control]="registerForm.controls.phoneNumber"></validation-message>
+                <div *ngIf="error.phoneNumber && error.phoneNumber.length > 0" class="help-block">
+                    <div *ngFor="let error of error.phoneNumber">
+                        <strong class="text-danger">{{ error }}</strong>
+                    </div>
+                </div>
             </td>
         </tr>
         <tr>
