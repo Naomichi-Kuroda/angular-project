@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { UserService } from "../../services/user.service";
-import { ToastsManager, Toast } from "ng2-toastr";
 import { ConstantService } from "../../services/constant.service";
+import { ToastsManager, Toast } from "ng2-toastr";
 
 @Component({
-    selector: 'register',
-    templateUrl: './register.component.html',
+    selector: 'register-client',
+    templateUrl: './register-client.component.html',
 })
-export class RegisterComponent implements OnInit {
+export class RegisterClientComponent implements OnInit {
 
+    userId: string;
     model: any;
     registerForm: FormGroup;
 
-    jsonPostBody: any;
+    jsonGetBody: any;
+    jsonPutBody: any;
 
     constructor(
         private fb: FormBuilder,
+        private route: ActivatedRoute,
         private router: Router,
         private constantService: ConstantService,
         private userService: UserService,
@@ -25,6 +28,7 @@ export class RegisterComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.userId = this.route.snapshot.params['id'];
         this.model = {
             'lastName': '',
             'firstName': '',
@@ -35,17 +39,35 @@ export class RegisterComponent implements OnInit {
         this.registerForm = this.fb.group({
             'lastName': [ '', [ Validators.required ] ],
             'firstName': [ '', [ Validators.required ] ],
-            'email': [ '', [ Validators.required ] ],
             'password': [ '', [ Validators.required ] ],
             'passwordConfirm': [ '', [ Validators.required ] ],
             'phoneNumber': [ '', [ Validators.required ] ],
         });
+        this.getUser();
+    }
+
+    getUser() {
+        this.userService.show(this.userId).subscribe(
+            res => {
+                this.jsonGetBody = res.result;
+            },
+            error => {
+                console.log(error);
+            },
+            () => {
+                this.setUser();
+            }
+        );
+    }
+
+    setUser() {
+        this.model = this.jsonGetBody;
     }
 
     register() {
-        this.userService.store(this.model).subscribe(
+        this.userService.storeClient(this.userId, this.model).subscribe(
             res => {
-                this.jsonPostBody = res.result;
+                this.jsonPutBody = res.result;
             },
             error => {
                 console.log(error);

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { ConstantService } from "../../services/constant.service";
 import { RoomService } from "../../services/room.service";
@@ -8,7 +8,7 @@ import { ToastsManager, Toast } from "ng2-toastr";
     selector: 'room-edit',
     templateUrl: './room-edit.component.html',
 })
-export class RoomEditComponent implements OnInit {
+export class RoomEditComponent implements OnInit, OnChanges {
 
     @Input() roomId: string;
     model: any;

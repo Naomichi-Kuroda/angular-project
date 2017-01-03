@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter, ViewChild, OnChanges } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from "@angular/forms";
 import { ConstantService } from "../../services/constant.service";
 import { ToastsManager, Toast } from "ng2-toastr";
@@ -9,7 +9,7 @@ import { UserListComponent } from "../user-list/user-list.component";
     selector: 'user-create',
     templateUrl: './user-create.component.html',
 })
-export class UserCreateComponent implements OnInit {
+export class UserCreateComponent implements OnInit, OnChanges {
 
     @ViewChild(UserListComponent) chileUserList: UserListComponent;
     @Input() companyId: string;

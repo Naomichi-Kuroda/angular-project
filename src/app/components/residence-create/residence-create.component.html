@@ -28,7 +28,7 @@
                                 <dl *ngFor="let tower of towerList.controls; let i = index;" [formGroupName]="i">
                                     <dd>
                                         <input type="text" class="form-control" formControlName="towerName">
-                                        <button type="button" class="btn btn-danger" (click)="removeTower(i)">
+                                        <button class="btn btn-danger" (click)="removeTower(i)">
                                             <span class="glyphicon glyphicon-minus" aria-hidden="false"></span>
                                             削除
                                         </button>
@@ -37,7 +37,7 @@
                                         <room-form (rooms)="getRooms"></room-form>
                                     </dd>
                                 </dl>
-                                <button type="button" class="btn btn-info" (click)="addTower()">
+                                <button class="btn btn-info" (click)="addTower()">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="false"></span>
                                     追加
                                 </button>

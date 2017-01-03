@@ -3,12 +3,12 @@
         <tr>
             <td colspan="2">
                 <div *ngIf="!isEditMode">
-                    <button type="button" class="btn btn-primary" (click)="onEditMode()">編集モード</button>
+                    <button class="btn btn-primary" (click)="onEditMode()">編集モード</button>
                 </div>
                 <div *ngIf="isEditMode">
-                    <button type="button" class="btn btn-default" (click)="onShowMode()">キャンセル</button>
-                    <button type="button" class="btn btn-warning" (click)="editRoom()">部屋編集</button>
-                    <button type="button" class="btn btn-danger" (click)="deleteModal.show()">部屋削除</button>
+                    <button class="btn btn-default" (click)="onShowMode()">キャンセル</button>
+                    <button class="btn btn-warning" (click)="editRoom()">部屋編集</button>
+                    <button class="btn btn-danger" (click)="deleteModal.show()">部屋削除</button>
                 </div>
             </td>
         </tr>
@@ -61,7 +61,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" (click)="deleteModal.hide()" aria-label="Close">
+                <button class="close" (click)="deleteModal.hide()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title">部屋削除</h4>

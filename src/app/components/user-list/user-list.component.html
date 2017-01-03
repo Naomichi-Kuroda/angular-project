@@ -8,6 +8,7 @@
             <button *ngIf="user.status == 1" class="btn btn-info" (click)="c.show()">
                 <span class="glyphicon glyphicon-envelope"></span>
             </button>
+            <user-confirm #c="child" [user]="user"></user-confirm>
         </td>
     </tr>
 </table>

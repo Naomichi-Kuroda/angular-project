@@ -1,0 +1,23 @@
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" (click)="lgModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">確認メール送信</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    {{ user.lastName }} {{ user.firstName }}さんに<br>
+                    アカウント登録メールを送信します。
+                </p>
+                <p>「{{ user.email }}」</p>
+                <div>
+                    <button class="btn btn-default" (click)="lgModal.hide()">キャンセル</button>
+                    <button class="btn btn-primary" (click)="sendConfirmationMail()">送信</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

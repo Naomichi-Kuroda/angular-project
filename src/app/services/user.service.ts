@@ -23,8 +23,26 @@ export class UserService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
+    show(id: string) : Observable<any> {
+        return this.http.get(this.apiUrl + '/' + id)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json()));
+    }
+
+    sendConfirmationMail(id: string) : Observable<any> {
+        return this.http.get(this.apiUrl + '/sendmail/' + id)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json()));
+    }
+
     store(body: Object): Observable<any> {
         return this.http.post(this.apiUrl, body, this.options)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json()));
+    }
+
+    storeClient(id: string, body: Object): Observable<any> {
+        return this.http.put(this.apiUrl + '/storeClient/' + id, body, this.options)
             .map((res:Response) => res.json())
             .catch((error:any) => Observable.throw(error.json()));
     }
@@ -34,6 +52,7 @@ export class UserService {
             .map((res:Response) => res.json())
             .catch((error:any) => Observable.throw(error.json()));
     }
+
     updatePassword(id: string, body: Object): Observable<any> {
         return this.http.put(this.apiUrl + '/updatePassword/' + id, body, this.options)
             .map((res:Response) => res.json())

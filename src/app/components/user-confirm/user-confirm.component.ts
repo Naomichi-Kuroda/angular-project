@@ -1,35 +1,27 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { Component, OnInit, ViewChild, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { ConstantService } from "../../services/constant.service";
 import { UserService } from "../../services/user.service";
 import { ToastsManager, Toast } from "ng2-toastr";
 
 @Component({
-    selector: 'password-edit',
-    templateUrl: './password-edit.component.html',
+    selector: 'user-confirm',
+    templateUrl: './user-confirm.component.html',
     exportAs: 'child'
 })
-export class PasswordEditComponent implements OnInit {
+export class UserConfirmComponent implements OnInit {
 
     @ViewChild('lgModal') lgModal;
-    @Input() userId: string;
-    editForm: FormGroup;
-    error: string;
-    jsonPutBody: any;
+    @Input() user: any;
+
+    jsonGetBody: any;
 
     constructor(
-        private fb: FormBuilder,
         private constantService: ConstantService,
         private userService: UserService,
         public toastr: ToastsManager
     ) { }
 
     ngOnInit() {
-        this.editForm = this.fb.group({
-            oldPassword: [''],
-            newPassword: [''],
-            confirmNewPassword: [''],
-        });
     }
 
     show() {
@@ -40,23 +32,18 @@ export class PasswordEditComponent implements OnInit {
         this.lgModal.hide();
     }
 
-    editPassword() {
-        let model = {
-            oldPassword: this.editForm.value.oldPassword,
-            newPassword: this.editForm.value.newPassword,
-            confirmNewPassword: this.editForm.value.confirmNewPassword,
-        };
-        this.userService.updatePassword(this.userId, model).subscribe(
+    sendConfirmationMail() {
+        this.userService.sendConfirmationMail(this.user.userId).subscribe(
             res => {
-                this.jsonPutBody = res.result;
+                this.jsonGetBody = res.result;
             },
             error => {
                 console.log(error);
             },
             () => {
-                this.toastSuccess('追加完了しました', '建物追加');
-                this.ngOnInit();
+                this.toastSuccess('送信完了しました', '確認メール送信');
                 this.hide();
+                this.ngOnInit();
             }
         )
     }

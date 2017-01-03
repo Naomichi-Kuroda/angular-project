@@ -10,9 +10,9 @@
 <div class="dp-popup" *ngIf="showDatepicker">
     <datepicker [(ngModel)]="date" [minDate]="minDate" [showWeeks]="false" (selectionDone)="onSelectionDone($event)"></datepicker>
     <div class="clearfix">
-        <button type="button" class="btn btn-sm btn-default" (click)="close()">Close</button>
-        <button type="button" class="btn btn-sm btn-primary" (click)="today()">Today</button>
-        <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        <button class="btn btn-sm btn-default" (click)="close()">Close</button>
+        <button class="btn btn-sm btn-primary" (click)="today()">Today</button>
+        <button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
     </div>
 </div>
 
