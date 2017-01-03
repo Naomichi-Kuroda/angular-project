@@ -47,6 +47,7 @@ import { PasswordEditComponent } from "./components/password-edit/password-edit.
 import { CompanyListComponent } from "./components/company-list/company-list.component";
 import { CompanyCreateComponent } from "./components/company-create/company-create.component";
 import { UserCreateComponent } from "./components/user-create/user-create.component";
+import { UserListComponent } from "./components/user-list/user-list.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -82,6 +83,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         CompanyCreateComponent,
         UserCreateComponent,
         CompanyCreationComponent,
+        UserListComponent,
     ],
     imports: [
         BrowserModule,

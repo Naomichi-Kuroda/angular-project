@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from "@angular/forms";
 import { ConstantService } from "../../services/constant.service";
 import { ToastsManager, Toast } from "ng2-toastr";
 import { CompanyService } from "../../services/company.service";
+import { UserListComponent } from "../user-list/user-list.component";
 
 @Component({
     selector: 'user-create',
@@ -10,6 +11,7 @@ import { CompanyService } from "../../services/company.service";
 })
 export class UserCreateComponent implements OnInit {
 
+    @ViewChild(UserListComponent) chileUserList: UserListComponent;
     @Input() companyId: string;
     createForm: FormGroup;
     userList: FormArray;
@@ -77,6 +79,8 @@ export class UserCreateComponent implements OnInit {
             },
             () => {
                 this.toastSuccess('追加完了しました', 'アカウント追加');
+                this.chileUserList.getUserList();
+                this.ngOnInit();
             }
         )
     };

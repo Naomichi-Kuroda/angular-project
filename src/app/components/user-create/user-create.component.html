@@ -9,23 +9,21 @@
                             <input type="text" class="form-control" formControlName="lastName" placeholder="姓">
                             <input type="text" class="form-control" formControlName="firstName" placeholder="名">
                             <input type="email" class="form-control" formControlName="email" placeholder="Email">
-                            <button *ngIf="i == 0" class="btn btn-success" (click)="createUsers()">保存</button>
-                            <button *ngIf="i != 0" type="button" class="btn btn-danger" (click)="removeUser(i)">
+                            <button *ngIf="i != 0" class="btn btn-danger" (click)="removeUser(i)">
                                 <span class="glyphicon glyphicon-minus" aria-hidden="false"></span>
                                 削除
                             </button>
                         </dd>
                     </dl>
-                    <button type="button" class="btn btn-info" (click)="addUser()">
+                    <button class="btn btn-info" (click)="addUser()">
                         <span class="glyphicon glyphicon-plus" aria-hidden="false"></span>
                         追加
                     </button>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                    <button class="btn btn-success" (click)="createUsers()">保存</button>
                 </td>
             </tr>
         </table>
     </form>
 </div>
+
+<user-list [companyId]="companyId"></user-list>

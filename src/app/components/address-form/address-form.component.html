@@ -2,7 +2,7 @@
     <dl>
         <dd>
             <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="zipCode" [(ngModel)]="address.zipCode">
-            <button *ngIf="isEditMode" type="button" class="btn btn-info" (click)="search()">
+            <button *ngIf="isEditMode" class="btn btn-info" (click)="search()">
                 <span class="glyphicon glyphicon-search"></span>
                 検索
             </button>

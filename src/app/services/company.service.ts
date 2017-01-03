@@ -25,6 +25,12 @@ export class CompanyService {
             .catch((error:any) => Observable.throw(error.json()));
     }
 
+    indexUsers(id: string): Observable<any> {
+        return this.http.get(this.apiUrl + '/indexUsers/' + id)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json()));
+    }
+
     show(id: string) : Observable<any> {
         return this.http.get(this.apiUrl + '/' + id)
             .map((res:Response) => res.json())
