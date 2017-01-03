@@ -19,6 +19,7 @@ import { ResidenceService } from "./services/residence.service";
 import { RoomService } from "./services/room.service";
 import { ResidentService } from "./services/resident.service";
 import { CompanyService } from "./services/company.service";
+import { ValidationService } from "./services/validation.service";
 
 // Page
 import { ResidenceComponent } from "./pages/residence/residence.component";
@@ -50,6 +51,7 @@ import { UserCreateComponent } from "./components/user-create/user-create.compon
 import { UserListComponent } from "./components/user-list/user-list.component";
 import { UserConfirmComponent } from "./components/user-confirm/user-confirm.component";
 import { RegisterClientComponent } from "./components/register-client/register-client.component";
+import { ValidationMessageComponent } from "./components/validation-message/validation-message.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -88,6 +90,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         UserListComponent,
         UserConfirmComponent,
         RegisterClientComponent,
+        ValidationMessageComponent,
     ],
     imports: [
         BrowserModule,
@@ -115,7 +118,8 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ResidenceService,
         RoomService,
         ResidentService,
-        CompanyService
+        CompanyService,
+        ValidationService
     ],
     bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'error',
@@ -6,14 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErrorComponent implements OnInit {
 
-    statusCode: string;
-    errorMessage: string;
+    code: string;
+    message: string;
 
-    constructor() { }
+    constructor(
+        private route: ActivatedRoute,
+    ) { }
 
     ngOnInit() {
-        this.statusCode = '404';
-        this.errorMessage = '存在しないページです';
+        this.code = this.route.snapshot.params['code'];
+        this.message = this.route.snapshot.params['message'];
     }
 
 }

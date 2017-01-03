@@ -1,41 +1,52 @@
 <form class="form-inline" [formGroup]="registerForm">
-    <table class="table table-condensed table-striped table-hover">
+    <table class="table table-striped table-hover">
         <tr>
             <th>名前</th>
             <td>
                 <input type="text" class="form-control" formControlName="lastName">
                 <input type="text" class="form-control" formControlName="firstName">
+                <validation-message [control]="registerForm.controls.lastName"></validation-message>
+                <validation-message [control]="registerForm.controls.firstName"></validation-message>
+                <div *ngIf="error" class="help-block">
+                    <strong class="text-danger">{{ error.lastName[0] }}</strong>
+                </div>
             </td>
         </tr>
         <tr>
             <th>メールアドレス</th>
             <td>
                 <input type="email" class="form-control" formControlName="email">
+                <validation-message [control]="registerForm.controls.email"></validation-message>
+                <div *ngIf="error" class="help-block">
+                    <strong class="text-danger">{{ error.email[0] }}</strong>
+                </div>
             </td>
         </tr>
         <tr>
             <th>パスワード</th>
             <td>
                 <input type="password" class="form-control" formControlName="password">
+                <validation-message [control]="registerForm.controls.password"></validation-message>
             </td>
         </tr>
         <tr>
             <th>確認パスワード</th>
             <td>
-                <input type="password" class="form-control" formControlName="passwordConfirm">
+                <input type="password" class="form-control" formControlName="confirmPassword">
             </td>
         </tr>
         <tr>
             <th>電話番号</th>
             <td>
                 <input type="text" class="form-control" formControlName="phoneNumber">
+                <validation-message [control]="registerForm.controls.phoneNumber"></validation-message>
             </td>
         </tr>
         <tr>
             <th></th>
             <td>
                 <div class="form-group">
-                    <button class="btn btn-primary" [disabled]="!registerForm.valid" (click)="register()">ユーザー登録</button>
+                    <button class="btn btn-primary" (click)="register()">ユーザー登録</button>
                 </div>
             </td>
         </tr>

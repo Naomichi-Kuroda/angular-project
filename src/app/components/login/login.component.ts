@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
     model: any;
     loginForm: FormGroup;
 
+    jsonPostBody: any;
+
     constructor(
         private fb: FormBuilder,
         private router: Router,
@@ -34,12 +36,15 @@ export class LoginComponent implements OnInit {
     login() {
         this.authService.login(this.model).subscribe(
             res => {
-                this.authService.setTokenToStorage(res.token, this.loginForm.value.remember);
+                this.jsonPostBody = res.result;
+            },
+            error => {
+                console.log(error);
+            },
+            () => {
+                this.authService.setTokenToStorage(this.jsonPostBody.token, this.loginForm.value.remember);
                 this.router.navigate([ '/' ]);
-            },
-            err => {
-                console.log(err);
-            },
+            }
         );
     }
 

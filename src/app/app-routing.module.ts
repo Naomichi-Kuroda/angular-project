@@ -20,6 +20,7 @@ const appRoutes: Routes = [
     { path: 'residence', component: ResidenceComponent, canActivate: [AuthGuard] },
     { path: 'company', component: CompanyComponent, canActivate: [AuthGuard] },
     { path: 'company/creation', component: CompanyCreationComponent, canActivate: [AuthGuard] },
+    { path: 'error/:code/:message', component: ErrorComponent },
     { path: '**', component: ErrorComponent },
 ];
 

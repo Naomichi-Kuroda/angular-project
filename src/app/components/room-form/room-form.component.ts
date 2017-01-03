@@ -30,6 +30,7 @@ export class RoomFormComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        this.current = '';
         this.tags= [];
     }
 
