@@ -6,9 +6,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientComponent implements OnInit {
 
+    userId: string;
+
     constructor() { }
 
     ngOnInit() {
+    }
+
+    setUserId(userId) {
+        this.userId = userId;
     }
 
 }
