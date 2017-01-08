@@ -23,6 +23,18 @@ export class UserService {
         this.options = new RequestOptions({ headers: this.headers });
     }
 
+    index(): Observable<any> {
+        return this.http.get(this.apiUrl)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json()));
+    }
+
+    indexClients(): Observable<any> {
+        return this.http.get(this.apiUrl + '/indexClients')
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json()));
+    }
+
     show(id: string) : Observable<any> {
         return this.http.get(this.apiUrl + '/' + id)
             .map((res:Response) => res.json())

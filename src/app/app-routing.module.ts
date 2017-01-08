@@ -10,6 +10,7 @@ import { AccountEditComponent } from "./components/account-edit/account-edit.com
 import { ResidenceComponent } from "./pages/residence/residence.component";
 import { CompanyComponent } from "./pages/company/company.component";
 import { CompanyCreationComponent } from "./pages/company-creation/company-creation.component";
+import { ClientComponent } from "./pages/client/client.component";
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'account', component: AccountEditComponent, canActivate: [AuthGuard] },
     { path: 'residence', component: ResidenceComponent, canActivate: [AuthGuard] },
+    { path: 'client', component: ClientComponent, canActivate: [AuthGuard] },
     { path: 'company', component: CompanyComponent, canActivate: [AuthGuard] },
     { path: 'company/creation', component: CompanyCreationComponent, canActivate: [AuthGuard] },
     { path: 'error/:code/:message', component: ErrorComponent },

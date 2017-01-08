@@ -8,7 +8,7 @@ import { ModalModule, DatepickerModule, DropdownModule } from "ng2-bootstrap";
 import { ToastModule } from "ng2-toastr";
 
 // Service
-import { AuthHttp, AuthConfig, provideAuth } from "angular2-jwt";
+import { AuthHttp, AuthConfig, provideAuth, AUTH_PROVIDERS } from "angular2-jwt";
 import { AuthGuard } from "./guards/auth-guard";
 import { ConstantService } from "./services/constant.service";
 import { AuthService } from "./services/auth.service";
@@ -25,6 +25,7 @@ import { ValidationService } from "./services/validation.service";
 import { ResidenceComponent } from "./pages/residence/residence.component";
 import { CompanyComponent } from "./pages/company/company.component";
 import { CompanyCreationComponent } from "./pages/company-creation/company-creation.component";
+import { ClientComponent } from "./pages/client/client.component";
 
 // Component
 import { AppComponent } from './app.component';
@@ -52,6 +53,7 @@ import { UserListComponent } from "./components/user-list/user-list.component";
 import { UserConfirmComponent } from "./components/user-confirm/user-confirm.component";
 import { RegisterClientComponent } from "./components/register-client/register-client.component";
 import { ValidationMessageComponent } from "./components/validation-message/validation-message.component";
+import { ClientListComponent } from "./components/client-list/client-list.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -91,6 +93,8 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         UserConfirmComponent,
         RegisterClientComponent,
         ValidationMessageComponent,
+        ClientListComponent,
+        ClientComponent,
     ],
     imports: [
         BrowserModule,

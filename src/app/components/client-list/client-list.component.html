@@ -1,0 +1,12 @@
+<table class="table table-striped table-hover">
+    <tr>
+        <th>名前</th>
+        <th>ロール</th>
+        <th>ステータス</th>
+    </tr>
+    <tr *ngFor="let user of userList" (click)="onUserId(user.userId)">
+        <td>{{ user.lastName }} {{ user.firstName }}</td>
+        <td>{{ user.roleName }}</td>
+        <td>{{ statusList[user.status] }}</td>
+    </tr>
+</table>
