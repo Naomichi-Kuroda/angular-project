@@ -56,6 +56,10 @@ import { RegisterClientComponent } from "./components/register-client/register-c
 import { ValidationMessageComponent } from "./components/validation-message/validation-message.component";
 import { ClientListComponent } from "./components/client-list/client-list.component";
 import { ClientEditComponent } from "./components/client-edit/client-edit.component";
+import { RoleComponent } from "./components/role/role.component";
+import { RoleListComponent } from "./components/role-list/role-list.component";
+import { RoleEditComponent } from "./components/role-edit/role-edit.component";
+import { RoleCreateComponent } from "./components/role-create/role-create.component";
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -98,6 +102,10 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ClientListComponent,
         ClientComponent,
         ClientEditComponent,
+        RoleComponent,
+        RoleListComponent,
+        RoleEditComponent,
+        RoleCreateComponent,
     ],
     imports: [
         BrowserModule,

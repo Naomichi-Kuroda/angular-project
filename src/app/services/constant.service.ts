@@ -12,6 +12,9 @@ export class ConstantService {
     SECOND_DISPLAY_TOAST: number;
     DATE_FORMAT: string;
     USER_STATUS: Array<any>;
+    ROLE_MANAGE: Array<any>;
+    ROLE_CONTENT: Array<any>;
+    ROLE_RESIDENCE: Array<any>;
 
     constructor(
         private router: Router,
@@ -22,6 +25,9 @@ export class ConstantService {
         this.SECOND_DISPLAY_TOAST = 3000;
         this.DATE_FORMAT = "yyyyMMdd";
         this.USER_STATUS = [{ id: 1, value: "未登録" },{ id: 2, value: "メール送信済" },{ id: 3, value: "登録済" },{ id: 4, value: "入居済" },]
+        this.ROLE_MANAGE = [{ id: 1, value: "アカウント管理", checked: false },{ id: 2, value: "物件管理", checked: false }]
+        this.ROLE_CONTENT = [{ id: 1, value: "お知らせ", checked: false },{ id: 2, value: "お困りごと", checked: false }]
+        this.ROLE_RESIDENCE = [{ id: 1, value: "物件全て", checked: false }]
     }
 
     hasError(error) {

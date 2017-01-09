@@ -1,0 +1,17 @@
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" (click)="lgModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">ロール管理</h4>
+            </div>
+            <div class="modal-body">
+                <role-list (selectRoleId)="setRoleId($event)"></role-list>
+                <role-create *ngIf="!roleId"></role-create>
+                <role-edit *ngIf="roleId" [roleId]="roleId"></role-edit>
+            </div>
+        </div>
+    </div>
+</div>

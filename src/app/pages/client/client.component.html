@@ -1,2 +1,4 @@
+<button class="btn btn-success" (click)="c.show()">ロール管理</button>
+<role #c="child"></role>
 <client-list (selectUserId)="setUserId($event)"></client-list>
 <client-edit [userId]="userId"></client-edit>

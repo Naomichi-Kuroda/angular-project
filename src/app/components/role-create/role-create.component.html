@@ -1,0 +1,45 @@
+<form class="form-inline" [formGroup]="createForm">
+    <table class="table table-striped table-hover">
+        <tr>
+            <td colspan="2">
+                <button type="button" class="btn btn-success" (click)="createRole()">ロール追加</button>
+            </td>
+        </tr>
+        <tr>
+            <th>ロール名</th>
+            <td>
+                <input type="text" class="form-control" formControlName="roleName">
+            </td>
+        </tr>
+        <tr>
+            <th>管理系機能</th>
+            <td>
+                <label class="checkbox-inline" *ngFor="let manageRole of manageRoleList">
+                    <input type="checkbox" value="{{manageRole.id}}" [ngStyle]="!isEditMode ? styleShow : ''" [(ngModel)]="manageRole.checked" [ngModelOptions]="{standalone: true}"> {{ manageRole.value }}
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <th>コンテンツ系機能</th>
+            <td>
+                <label class="checkbox-inline" *ngFor="let contentRole of contentRoleList">
+                    <input type="checkbox" value="{{contentRole.id}}" [ngStyle]="!isEditMode ? styleShow : ''" [(ngModel)]="contentRole.checked" [ngModelOptions]="{standalone: true}"> {{ contentRole.value }}
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <th>物件別</th>
+            <td>
+                <label class="checkbox-inline" *ngFor="let residenceRole of residenceRoleList">
+                    <input type="checkbox" value="{{residenceRole.id}}" [ngStyle]="!isEditMode ? styleShow : ''" [(ngModel)]="residenceRole.checked" [ngModelOptions]="{standalone: true}"> {{ residenceRole.value }}
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <th>メモ</th>
+            <td>
+                <textarea class="form-control" cols="50" rows="4" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="memo"></textarea>
+            </td>
+        </tr>
+    </table>
+</form>
