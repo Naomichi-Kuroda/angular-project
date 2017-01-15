@@ -1,19 +1,31 @@
-<form class="form-inline" [formGroup]="addressForm">
-    <dl>
-        <dd>
-            <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="zipCode" [(ngModel)]="address.zipCode">
-            <button *ngIf="isEditMode" class="btn btn-info" (click)="search()">
-                <span class="glyphicon glyphicon-search"></span>
-                検索
-            </button>
-        </dd>
-        <dd>
-            <select class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="prefecture" [(ngModel)]="address.prefecture">
-                <option *ngFor="let prefecture of prefectureList" [ngValue]="prefecture.value">{{ prefecture.value }}</option>
-            </select>
-            <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="city" [(ngModel)]="address.city">
-            <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="town" [(ngModel)]="address.town">
+<div *ngIf="!isEditMode">
+    <div class="row">
+        <div class="col-md-12">{{ address.zipCode }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">{{ address.prefecture }} {{ address.city }} {{ address.town }}</div>
+    </div>
+</div>
 
-        </dd>
-    </dl>
-</form>
+<div *ngIf="isEditMode">
+    <form class="form-horizontal" role="form" [formGroup]="addressForm">
+        <div class="form-group">
+            <div class="col-md-12 form-inline">
+                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="郵便番号" formControlName="zipCode" [(ngModel)]="address.zipCode">
+                <button *ngIf="isEditMode" class="btn btn-info" (click)="search()">
+                    <span class="glyphicon glyphicon-search"></span>
+                    検索
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12 form-inline">
+                <select class="form-control" id="prefecture" name="prefecture" placeholder="県" formControlName="prefecture" [(ngModel)]="address.prefecture">
+                    <option *ngFor="let prefecture of prefectureList" [ngValue]="prefecture.value">{{ prefecture.value }}</option>
+                </select>
+                <input type="text" class="form-control" id="city" name="city" placeholder="市区" formControlName="city" [(ngModel)]="address.city">
+                <input type="text" class="form-control" id="town" name="town" placeholder="町村" formControlName="town" [(ngModel)]="address.town">
+            </div>
+        </div>
+    </form>
+</div>

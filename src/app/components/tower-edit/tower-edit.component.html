@@ -1,76 +1,97 @@
-<form class="form-inline" [formGroup]="editForm">
-    <table class="table table-striped table-hover">
-        <tr>
-            <td colspan="2">
-                <div *ngIf="!isEditMode">
-                    <button type="button" class="btn btn-primary" (click)="onEditMode()">編集モード</button>
-                </div>
-                <div *ngIf="isEditMode">
-                    <button type="button" class="btn btn-default" (click)="onShowMode()">キャンセル</button>
-                    <button type="button" class="btn btn-warning" (click)="editTower()">建物編集</button>
-                    <button type="button" class="btn btn-danger" (click)="deleteModal.show()">建物削除</button>
-                    <button type="button" class="btn btn-success" (click)="createModal.show()">部屋追加</button>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <th>建物名</th>
-            <td>
-                <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="residenceName" [(ngModel)]="model.residenceName">
-            </td>
-        </tr>
-        <tr>
-            <th>棟名</th>
-            <td>
-                <input type="text" class="form-control" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="towerName" [(ngModel)]="model.towerName">
-            </td>
-        </tr>
-        <tr>
-            <th>住所</th>
-            <td>
-                <address-form [address]="model.address" [isEditMode]="isEditMode"></address-form>
-            </td>
-        </tr>
-        <tr>
-            <th>メモ</th>
-            <td>
-                <textarea class="form-control" cols="50" rows="4" [ngStyle]="!isEditMode ? styleShow : ''" formControlName="memo" [(ngModel)]="model.memo"></textarea>
-            </td>
-        </tr>
-    </table>
-</form>
-
-<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" (click)="deleteModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">建物削除</h4>
-            </div>
-            <div class="modal-body">
-                <button class="btn btn-default" (click)="deleteModal.hide()">キャンセル</button>
-                <button class="btn btn-danger" (click)="deleteTower();deleteModal.hide()">削除</button>
-            </div>
+<div *ngIf="!isEditMode">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="button" class="btn btn-primary" (click)="onEditMode()">編集モード</button>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">建物名</div>
+        <div class="col-md-10">{{ model.residenceName }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">棟名</div>
+        <div class="col-md-10">{{ model.towerName }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">所在地</div>
+        <div class="col-md-10"><address-form [address]="model.address" [isEditMode]="false"></address-form></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">メモ</div>
+        <div class="col-md-10">{{ model.memo }}</div>
     </div>
 </div>
 
-<div bsModal #createModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" (click)="createModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">部屋追加</h4>
+<div *ngIf="isEditMode">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="button" class="btn btn-default" (click)="onShowMode()">キャンセル</button>
+            <button type="button" class="btn btn-warning" (click)="editTower()">建物編集</button>
+            <button type="button" class="btn btn-danger" (click)="deleteModal.show()">建物削除</button>
+            <button type="button" class="btn btn-success" (click)="createModal.show()">部屋追加</button>
+        </div>
+    </div>
+
+    <form class="form-horizontal" role="form" [formGroup]="editForm">
+        <div class="form-group">
+            <label for="residenceName" class="col-md-2 control-label">建物名</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="residenceName" name="residenceName" placeholder="建物名" formControlName="residenceName" [(ngModel)]="model.residenceName">
             </div>
-            <div class="modal-body">
-                <room-form></room-form>
-                <div>
-                    <button class="btn btn-default" (click)="createModal.hide()">キャンセル</button>
-                    <button class="btn btn-success" (click)="addRooms();createModal.hide()">追加</button>
+        </div>
+        <div class="form-group">
+            <label for="towerName" class="col-md-2 control-label">棟名</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="towerName" name="towerName" placeholder="建物名" formControlName="towerName" [(ngModel)]="model.towerName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zipCode" class="col-md-2 control-label">住所</label>
+            <div class="col-md-10">
+                <address-form [address]="model.address" [isEditMode]="isEditMode"></address-form>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="memo" class="col-md-2 control-label">メモ</label>
+            <div class="col-md-10">
+                <textarea class="form-control" id="memo" name="memo" cols="50" rows="4" formControlName="memo" [(ngModel)]="model.memo"></textarea>
+            </div>
+        </div>
+    </form>
+
+    <div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" (click)="deleteModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">建物削除</h4>
+                </div>
+                <div class="modal-body">
+                    <button class="btn btn-default" (click)="deleteModal.hide()">キャンセル</button>
+                    <button class="btn btn-danger" (click)="deleteTower();deleteModal.hide()">削除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div bsModal #createModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" (click)="createModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">部屋追加</h4>
+                </div>
+                <div class="modal-body">
+                    <room-form></room-form>
+                    <div>
+                        <button class="btn btn-default" (click)="createModal.hide()">キャンセル</button>
+                        <button class="btn btn-success" (click)="addRooms();createModal.hide()">追加</button>
+                    </div>
                 </div>
             </div>
         </div>
